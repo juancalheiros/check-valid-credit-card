@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { NumberCreditCard, MounthYear  } from './Component/index'
+import { NumberCreditCard } from './Component/index'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,6 @@ export function App() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <NumberCreditCard/>
-      <MounthYear/>
     </form>
   );
 }
