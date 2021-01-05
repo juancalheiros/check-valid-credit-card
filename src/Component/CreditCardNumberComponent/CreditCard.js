@@ -17,6 +17,7 @@ export function NumberCreditCard() {
     <TextField
       label="Number your credit card"
       value={value.Data}
+      color="primary"
       onChange={handleChange}
       name="numberformat"
       id="number-credit-card"
