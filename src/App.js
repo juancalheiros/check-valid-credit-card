@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
       marginLeft: "50%",
       maxHeight: "400px",
       maxWidth: "400px",
+      marginInline: "auto",
     },
     cardContent: {
       paddingLeft: "50px",
