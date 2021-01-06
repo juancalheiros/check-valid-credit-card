@@ -24,14 +24,13 @@ export function reverseArray(array) {
 export function doubleOddIndexes(array) {
     let resp = []
 
-    for (let index in array) {
-        let currentValue = array[index] 
-
+     array.map((currentValue,index) => {
+        
         index%2 !== 0 ? 
             (resp.push(currentValue*2))
             :(resp.push(currentValue))
         
-    }
+    })
     return resp
 }
 
@@ -66,4 +65,3 @@ export function sumArrayIsMod10(array) {
 
     return result%10 === 0
 }
-
