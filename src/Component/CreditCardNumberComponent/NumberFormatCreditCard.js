@@ -24,8 +24,8 @@ export function NumberFormatCreditCard(props) {
         />
     );
 }
-  
-  
+ 
+
 NumberFormatCreditCard.propTypes = {
     inputRef: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
