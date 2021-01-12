@@ -1,4 +1,4 @@
-export function numberCreditCardIsValid(numberCreditCard) {
+function numberCreditCardIsValid(numberCreditCard) {
     
     const arrayOfNumber = tratamentData(numberCreditCard)
     const reverseNumberCreditCard = reverseArray(arrayOfNumber) 
@@ -9,19 +9,19 @@ export function numberCreditCardIsValid(numberCreditCard) {
     return numberIsValid
 }
   
-export function tratamentData(numberCreditCard){
-    const convertToString = (numberCreditCard).toString()
+function tratamentData(numberCreditCard){
+    const convertToString = convertNumberToString(numberCreditCard)
     const sliptString = convertToString.split("")
     const arrayOfNumber = sliptString.map(value => { return Number(value) })
 
     return arrayOfNumber
 }
 
-export function reverseArray(array) {
+function reverseArray(array) {
     return array.reverse()
 }
 
-export function doubleOddIndexes(array) {
+function doubleOddIndexes(array) {
     let resp = []
 
      array.map((currentValue,index) => {
@@ -34,11 +34,15 @@ export function doubleOddIndexes(array) {
     return resp
 }
 
-export function adjustValuesWithTwoDigit(array) {
+function convertNumberToString(value) {
+    return (value).toString()
+}
+
+function adjustValuesWithTwoDigit(array) {
     let resp = []
 
     array.map((currValue) => {
-        const convertValueToString = (currValue).toString()
+        const convertValueToString = convertNumberToString(currValue)
       
         if (convertValueToString.length > 1) {
             const arrayString = convertValueToString.split("") 
@@ -57,11 +61,20 @@ export function adjustValuesWithTwoDigit(array) {
     return resp
 }
 
-export function sumArrayIsMod10(array) {
+function sumArrayIsMod10(array) {
     
     const result = array.reduce((acc, currentValue) => {
         return acc + currentValue
     })
 
     return result%10 === 0
+}
+
+module.exports = {
+    numberCreditCardIsValid,
+    tratamentData,
+    reverseArray,
+    doubleOddIndexes,
+    adjustValuesWithTwoDigit,
+    sumArrayIsMod10,
 }
