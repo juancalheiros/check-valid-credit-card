@@ -1,7 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
-import { NumberCreditCard,SendButton } from './Component/index'
+import { NumberCreditCard } from './Component/CreditCardNumber'
+import { SendButton } from './Component/SendButton'
 import { CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({

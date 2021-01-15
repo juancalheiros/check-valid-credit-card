@@ -1,8 +1,10 @@
 import React , { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import { NumberFormatCreditCard } from './NumberFormatCreditCard'
+import { numberCreditCardIsValid } from './ValidateNumberCreditCard'
 
 function validError(){
+  numberCreditCardIsValid("123")
   return false
 }
 

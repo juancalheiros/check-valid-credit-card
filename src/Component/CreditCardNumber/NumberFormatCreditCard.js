@@ -14,6 +14,7 @@ export function NumberFormatCreditCard(props) {
             format = "#### #### #### ####"
             placeholder="1234 1234 1234 1234"
             onValueChange={(values) => {
+                console.log("value=====>>>>>>",typeof values.value)
                 onChange({
                     target: {
                         name: props.name,
@@ -22,7 +23,7 @@ export function NumberFormatCreditCard(props) {
                 });
             }}
         />
-    );
+    )
 }
  
 

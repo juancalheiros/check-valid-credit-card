@@ -1,6 +1,6 @@
 import { 
     tratamentData,
-    reverseArray ,
+    numberIsOdd,
     doubleOddIndexes , 
     adjustValuesWithTwoDigit,
     sumArrayIsMod10,
@@ -9,7 +9,7 @@ import {
 
 describe("tratamentData", () => {
     it("Should return array of number", () => {
-        const value = 1234
+        const value = "1234"
         const expected = [1,2,3,4]
 
         const resp = tratamentData(value)
@@ -18,17 +18,18 @@ describe("tratamentData", () => {
     })
 })
 
+describe("numberIsOdd", () => {
+    it("Should return true if number is odd", () => {
+    
+        expect(numberIsOdd(9)).toBeTruthy()
+    })
 
-describe("reverseArray", () => {
-    it("Should return reverse in array", () => {
-        const array = [1,2,3]
-        const expected = [3,2,1]
-
-        const resp = reverseArray(array)
-
-        expect(resp).toStrictEqual(expected)
+    it("Should return fase if number is not odd", () => {
+    
+        expect(numberIsOdd(10)).toBeFalsy()
     })
 })
+
 
 describe("doubleOddIndexes",() => {
     it("Should return array in duble value in odd index",() => {
@@ -64,7 +65,7 @@ describe("sumArrayIsMod10", () => {
 
 describe("numberCreditCardIsValid", () => {
     it("Should return true when the number of credit card is valid", () => {
-        const array = 49927398716
+        const array = "49927398716"
 
         const resp = numberCreditCardIsValid(array)
 
@@ -72,7 +73,7 @@ describe("numberCreditCardIsValid", () => {
     })
 
     it("Should return false when the number of credit card is invalid", () => {
-        const array = 49927398726
+        const array = "49927398726"
 
         const resp = numberCreditCardIsValid(array)
 
