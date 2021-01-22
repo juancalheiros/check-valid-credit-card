@@ -1,5 +1,12 @@
 function numberCreditCardIsValid(numberCreditCard) {
     
+    if (numberCreditCard === null){
+        return false
+    }
+    while(numberCreditCard.length < 16){
+        return false
+    }
+
     const arrayOfNumber = tratamentData(numberCreditCard)
     const reverseNumberCreditCard = arrayOfNumber.reverse() 
     const doubleValueInIndexOdd = doubleOddIndexes(reverseNumberCreditCard)
@@ -8,7 +15,7 @@ function numberCreditCardIsValid(numberCreditCard) {
 
     return numberIsValid
 }
-  
+ 
 function tratamentData(numberCreditCard){
     const sliptString = numberCreditCard.split("")
     return sliptString.map(currentValue => { return Number(currentValue) })

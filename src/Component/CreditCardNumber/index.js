@@ -1,1 +1,1 @@
-export { NumberCreditCard } from "./CreditCard"
+export { default as NumberCreditCard } from "./CreditCard"

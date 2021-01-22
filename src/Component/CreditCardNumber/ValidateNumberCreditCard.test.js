@@ -64,6 +64,10 @@ describe("sumArrayIsMod10", () => {
 })
 
 describe("numberCreditCardIsValid", () => {
+    // To Do investigation 
+    //1232 1515 5646 5465 indalido
+    //1232 1515 5646 5464 valido
+    
     it("Should return true when the number of credit card is valid", () => {
         const array = "49927398716"
 

@@ -1,8 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
 import { NumberCreditCard } from './Component/CreditCardNumber'
-import { SendButton } from './Component/SendButton'
 import { CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -21,36 +21,44 @@ const useStyles = makeStyles(() => ({
   })
 );
 
-export function App() {
+function App(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      
-      <CardMedia
-        component="img"
-        alt="Contemplative Reptile"
-        height="200"
-        image="https://veja.abril.com.br/wp-content/uploads/2019/01/economia-cartao-de-credito-20170929-004.jpg?quality=70&strip=info&resize=680,453"
-        title="Verify Number Card"
-      />
+    <>
+      <Card className={classes.root}>
+        
+        <CardMedia
+          component="img"
+          alt="Contemplative Reptile"
+          height="200"
+          image="https://veja.abril.com.br/wp-content/uploads/2019/01/economia-cartao-de-credito-20170929-004.jpg?quality=70&strip=info&resize=680,453"
+          title="Verify Number Card"
+        />
 
-      <CardContent className={classes.cardContent}>
+        <CardContent className={classes.cardContent}>
 
-        <Typography 
-          gutterBottom
-          paragraph
-          variant="h6" 
-          component="h2" 
-          color="textPrimary"
-        >
-          Verify Number Card
-        </Typography>
-        <NumberCreditCard/>
-        <SendButton/>
+          <Typography 
+            gutterBottom
+            paragraph
+            variant="h6" 
+            component="h2" 
+            color="textPrimary"
+          >
+            Verify Number Card
+          </Typography>
+          <NumberCreditCard/>
 
-      </CardContent>
+        </CardContent>
 
-    </Card>
+      </Card>
+
+    </>
   );
 }
+
+const mapStateToProps = store => ({
+  newValue: store.clickState.newValue
+});
+
+export default connect(mapStateToProps)(App);
