@@ -1,9 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card';
-import { NumberCreditCard } from './Component/CreditCardNumber'
-import { CardContent, CardMedia, Typography } from '@material-ui/core';
+import { NumberCreditCard } from './Component'
+import {
+  Card, 
+  CardContent, 
+  CardMedia, 
+  makeStyles, 
+  Typography 
+} from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -14,14 +17,12 @@ const useStyles = makeStyles(() => ({
       marginInline: "auto",
     },
     cardContent: {
-      paddingLeft: "50px",
-      paddingRight: "50px",
-      marginInline: "auto",
+      textAlignLast: "center",
     }
   })
 );
 
-function App(props) {
+export function App() {
   const classes = useStyles();
 
   return (
@@ -29,23 +30,24 @@ function App(props) {
       <Card className={classes.root}>
         
         <CardMedia
+          height="200"
           component="img"
           alt="Contemplative Reptile"
-          height="200"
-          image="https://veja.abril.com.br/wp-content/uploads/2019/01/economia-cartao-de-credito-20170929-004.jpg?quality=70&strip=info&resize=680,453"
           title="Verify Number Card"
+          image="https://veja.abril.com.br/wp-content/uploads/2019/01/economia-cartao-de-credito-20170929-004.jpg?quality=70&strip=info&resize=680,453"
+          
         />
 
         <CardContent className={classes.cardContent}>
 
           <Typography 
-            gutterBottom
             paragraph
+            gutterBottom
             variant="h6" 
             component="h2" 
             color="textPrimary"
           >
-            Verify Number Card
+            Verify Number Credit Card
           </Typography>
           <NumberCreditCard/>
 
@@ -54,11 +56,5 @@ function App(props) {
       </Card>
 
     </>
-  );
+  )
 }
-
-const mapStateToProps = store => ({
-  newValue: store.clickState.newValue
-});
-
-export default connect(mapStateToProps)(App);

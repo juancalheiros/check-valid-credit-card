@@ -1,9 +1,6 @@
 function numberCreditCardIsValid(numberCreditCard) {
     
-    if (numberCreditCard === null){
-        return false
-    }
-    while(numberCreditCard.length < 16){
+    if (numberCreditCard === null || numberCreditCard.length !== 16){
         return false
     }
 

@@ -1,17 +1,19 @@
-import { CLICK_UPDATE_VALUE } from '../actions/actionTypes';
+import { TYPING_UPDATE_VALUE } from '../actions'
 
 const initialState = {
-    newValue: null
-  };
+    newValue: null,
+    error: false,
+  }
 
 export const clickReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CLICK_UPDATE_VALUE:
+        case TYPING_UPDATE_VALUE:
             return {
                 ...state,
-                newValue: action.newValue
-            };
+                newValue: action.newValue,
+                error: action.error,
+            }
         default:
-            return state;
+            return state
     }
 };
