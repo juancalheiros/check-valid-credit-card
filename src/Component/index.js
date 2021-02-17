@@ -1,4 +1,4 @@
-export { default as NumberCreditCard, menssageValidation, canHaveError} from './CreditCard'
+export { default as CreditCardNumber,} from './CreditCardNumber'
 
 export { 
     numberIsOdd ,
@@ -7,4 +7,4 @@ export {
     doubleOddIndexes,
     adjustValuesWithTwoDigit,
     sumArrayIsMod10
-} from  './ValidateNumberCreditCard'
+} from  './ValidateCreditCardNumber'

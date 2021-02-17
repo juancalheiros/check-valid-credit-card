@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import NumberFormat from 'react-number-format'
-import { connect } from 'react-redux'
-import { typingField } from "../actions"
 
-function NumberFormatCreditCard(props) {
-    const { inputRef, onChange, dispatch, name,...other } = props
+export default function CreditCardNumberFormat(props) {
+    const { inputRef, onChange, name,...other } = props
     
     const handleChange = ({value}) => {
         onChange({
@@ -14,10 +12,6 @@ function NumberFormatCreditCard(props) {
                 value,
             },
         })
-
-        setTimeout(() => {
-            dispatch(typingField(value)) 
-        },1500)
     }
 
     return (
@@ -33,13 +27,7 @@ function NumberFormatCreditCard(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    dispatch: state.clickState.dispatch,  
-})
-
-export default connect(mapStateToProps)(NumberFormatCreditCard)
-
-NumberFormatCreditCard.propTypes = {
+CreditCardNumberFormat.propTypes = {
     inputRef: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
