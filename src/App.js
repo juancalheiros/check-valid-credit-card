@@ -1,5 +1,12 @@
 import React from 'react'
-import { CreditCardNumber,SalveButton } from './Component'
+
+import { 
+  CreditCardNumber,
+  SalveButton,
+  CVV,
+  ExpirationDate
+} from './Component'
+
 import {
   Card, 
   CardContent, 
@@ -49,8 +56,13 @@ export function App() {
           >
             Verify Number Credit Card
           </Typography>
-          {true && <CreditCardNumber/>}
+          
+          {false && <CreditCardNumber/>}
+          {false && <CVV/>}
+          {true && <ExpirationDate/>}
+          
           <SalveButton/>
+
         </CardContent>
 
       </Card>
