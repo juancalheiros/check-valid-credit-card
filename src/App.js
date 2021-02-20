@@ -1,5 +1,5 @@
 import React from 'react'
-import { CreditCardNumber } from './Component'
+import { CreditCardNumber,SalveButton } from './Component'
 import {
   Card, 
   CardContent, 
@@ -50,7 +50,7 @@ export function App() {
             Verify Number Credit Card
           </Typography>
           {true && <CreditCardNumber/>}
-
+          <SalveButton/>
         </CardContent>
 
       </Card>

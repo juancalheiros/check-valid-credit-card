@@ -1,4 +1,5 @@
-export { default as CreditCardNumber,} from './CreditCardNumber'
+export { default as CreditCardNumber } from './CreditCardNumber'
+export { default as SalveButton } from './SalveButton'
 
 export { 
     numberIsOdd ,
