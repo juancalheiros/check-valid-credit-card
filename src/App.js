@@ -57,9 +57,9 @@ export function App() {
             Verify Number Credit Card
           </Typography>
           
-          {false && <CreditCardNumber/>}
+          {true && <CreditCardNumber/>}
           {false && <CVV/>}
-          {true && <ExpirationDate/>}
+          {false && <ExpirationDate/>}
           
           <SalveButton/>
 
