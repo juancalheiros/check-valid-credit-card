@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import { 
   CreditCardNumber,
@@ -32,6 +32,60 @@ const useStyles = makeStyles(() => ({
 export function App() {
   const classes = useStyles();
 
+  const [numberCreditCard, setNumberCreditCard] = useState(null)
+  const [canShowNumberCreditCard,setCanShowNumberCreditCard] = useState(false)
+
+  const [cvv,setCvv] = useState(null)
+  const [canShowCVV,setCanShowCVV] = useState(false)
+  
+  const [expirateDate,setExpirateDate] = useState(null)
+  const [canShowExpirationDate,setCanShowExpirationDate] = useState(true)
+
+  const [canHabilitSaveButton, setCanHabilitSaveButton] = useState(false)
+  
+  //////////////////////////////////////////////
+  //Number Credit Card
+  const handleNumberCreditCard = value => {
+    setNumberCreditCard(value)
+  }
+
+  const handleCanHaveErrorCreditCard = value => {
+    setCanHabilitSaveButton(value)
+  }
+
+  const handleShowNumberCreditCard = value => {
+    setCanShowNumberCreditCard(value)
+  }
+
+  //////////////////////////////////////////////
+  //CVV
+  const handleCVV = value =>{
+    setCvv(value)
+  }
+
+  const handleCanHaveErrorCVV = value => {
+    setCanHabilitSaveButton(value)
+  }
+
+  const handleShowCVV = value => {
+    setCanShowCVV(value)
+  }
+
+  ///////////////////////////////////////////
+  //Expirate Date
+  const handleExpirateDate = value => {
+    setExpirateDate(value)
+  }
+
+  const handleCanHaveErrorExpirateDate = value =>{
+    setCanHabilitSaveButton(value)
+  }
+
+  const handleShowExpirateDate = value => {
+    setCanShowExpirationDate(value)
+  }
+
+
   return (
     <>
       <Card className={classes.root}>
@@ -57,11 +111,33 @@ export function App() {
             Verify Number Credit Card
           </Typography>
           
-          {true && <CreditCardNumber/>}
-          {false && <CVV/>}
-          {false && <ExpirationDate/>}
+          { canShowNumberCreditCard && 
+            < CreditCardNumber 
+              handleNumberCreditCard={handleNumberCreditCard}
+              handleCanHaveErrorCreditCard = {handleCanHaveErrorCreditCard}
+            />
+          }
           
-          <SalveButton/>
+          { canShowCVV && 
+            < CVV
+              handleCVV={handleCVV}
+              handleCanHaveErrorCVV={handleCanHaveErrorCVV}
+            />
+          }
+          
+          { canShowExpirationDate && 
+            < ExpirationDate
+              handleExpirateDate={handleExpirateDate}
+              handleCanHaveErrorExpirateDate={handleCanHaveErrorExpirateDate}
+            />
+          }
+          
+          <SalveButton 
+            disabled={canHabilitSaveButton}
+            handleShowNumberCreditCard ={handleShowNumberCreditCard}
+            handleShowCVV={handleShowCVV}
+            handleShowExpirateDate={handleShowExpirateDate}
+          />
 
         </CardContent>
 

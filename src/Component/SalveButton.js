@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 
-export default function SalveButton(){
+export default function SalveButton(props){
 
     const classes = useStyles();
 
@@ -20,6 +20,7 @@ export default function SalveButton(){
             variant="contained"
             color="primary"
             size="small"
+            disabled={!props.disabled}
             className={classes.button}
             startIcon={<SaveIcon />}
         >
