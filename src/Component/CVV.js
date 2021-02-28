@@ -4,6 +4,7 @@ import CVVFormat from './CVVFormat'
 
 
 export default function CVV(props) {
+  const { handleCanHaveErrorCVV, handleCVV } = props
   
   const [value,setValue] = useState(null)
   const [isValidNumber,setIsValidNumber] =useState(true)
@@ -11,7 +12,7 @@ export default function CVV(props) {
 
   const handleChange = event =>{
     const { value } = event.target
-
+      
     if(isInitialState(value)){
       clearValues()
     }
@@ -39,8 +40,8 @@ export default function CVV(props) {
     setMenssage(RespMenssage)
     setIsValidNumber(isValidNumber)
     
-    props.handleCVV(value)
-    props.handleCanHaveErrorCVV(isValidNumber)
+    handleCVV(value)
+    handleCanHaveErrorCVV(isValidNumber)
   }
 
   return (

@@ -4,7 +4,8 @@ import {
   CreditCardNumber,
   SalveButton,
   CVV,
-  ExpirationDate
+  ExpirationDate,
+  ConfirmationData
 } from './Component'
 
 import {
@@ -33,14 +34,16 @@ export function App() {
   const classes = useStyles();
 
   const [numberCreditCard, setNumberCreditCard] = useState(null)
-  const [canShowNumberCreditCard,setCanShowNumberCreditCard] = useState(false)
+  const [canShowNumberCreditCard,setCanShowNumberCreditCard] = useState(true)
 
   const [cvv,setCvv] = useState(null)
   const [canShowCVV,setCanShowCVV] = useState(false)
   
   const [expirateDate,setExpirateDate] = useState(null)
-  const [canShowExpirationDate,setCanShowExpirationDate] = useState(true)
+  const [canShowExpirationDate,setCanShowExpirationDate] = useState(false)
 
+  const [canShowConfirmationData, setCanShowConfirmationData] = useState(false)
+  
   const [canHabilitSaveButton, setCanHabilitSaveButton] = useState(false)
   
   //////////////////////////////////////////////
@@ -77,7 +80,7 @@ export function App() {
     setExpirateDate(value)
   }
 
-  const handleCanHaveErrorExpirateDate = value =>{
+  const handleCanHaveErrorExpirateDate = value => {
     setCanHabilitSaveButton(value)
   }
 
@@ -85,7 +88,18 @@ export function App() {
     setCanShowExpirationDate(value)
   }
 
+  ////////////////////////////////////////
+  //Confirmation Data
+  const handleShowConfirmationData = value => {
+    setCanShowConfirmationData(value)
+  }
 
+  ////////////////////////////////////////
+  //SalveButton
+  const handleCanHabilitSaveButton = value => {
+    setCanHabilitSaveButton(value)
+  }
+  
   return (
     <>
       <Card className={classes.root}>
@@ -112,31 +126,44 @@ export function App() {
           </Typography>
           
           { canShowNumberCreditCard && 
-            < CreditCardNumber 
+            <CreditCardNumber 
               handleNumberCreditCard={handleNumberCreditCard}
               handleCanHaveErrorCreditCard = {handleCanHaveErrorCreditCard}
             />
           }
           
           { canShowCVV && 
-            < CVV
+            <CVV
               handleCVV={handleCVV}
               handleCanHaveErrorCVV={handleCanHaveErrorCVV}
             />
           }
           
           { canShowExpirationDate && 
-            < ExpirationDate
+            <ExpirationDate
               handleExpirateDate={handleExpirateDate}
               handleCanHaveErrorExpirateDate={handleCanHaveErrorExpirateDate}
             />
           }
+
+          { canShowConfirmationData && 
+            <ConfirmationData 
+              numberCreditCard = {numberCreditCard}
+              cvv={cvv}
+              expirateDate={expirateDate}
+            />
+          }
           
           <SalveButton 
-            disabled={canHabilitSaveButton}
+            habilited={canHabilitSaveButton}
             handleShowNumberCreditCard ={handleShowNumberCreditCard}
             handleShowCVV={handleShowCVV}
             handleShowExpirateDate={handleShowExpirateDate}
+            handleShowConfirmationData={handleShowConfirmationData}
+            numberCreditCard={numberCreditCard}
+            cvv={cvv}
+            expirateDate={expirateDate}
+            handleCanHabilitSaveButton={handleCanHabilitSaveButton}
           />
 
         </CardContent>

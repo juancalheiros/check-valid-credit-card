@@ -4,6 +4,8 @@ import ExpirationDateFormat from './ExpirationDateFormat'
 
 
 export default function ExpirationDate(props) {
+  const { handleExpirateDate, handleCanHaveErrorExpirateDate } = props
+  
   const [value, setValue] = useState(null)
   const [isValidData,setIsValiData] = useState(true)
   const [menssage, setMenssage] = useState(undefined)
@@ -16,9 +18,9 @@ export default function ExpirationDate(props) {
       clearValues()
     }
     else {
-      const now  = new Date
+      const now  = new Date()
       const dateActual = now.getFullYear()
-      const menssageMounth = mounth > 12 || mounth === 0 ? "Mounth invalid":"" 
+      const menssageMounth = mounth > 12 || mounth <= 0 ? "Mounth invalid":"" 
       const  menssageYear =  yearIsValid(year,dateActual) ? "Year invalid":""
       
 
@@ -38,8 +40,8 @@ export default function ExpirationDate(props) {
     setMenssage(menssage)
     setIsValiData(isValidDate)
 
-    props.handleExpirateDate(value)
-    props.handleCanHaveErrorExpirateDate(isValidDate)
+    handleExpirateDate(value)
+    handleCanHaveErrorExpirateDate(isValidDate)
   }
 
   const clearValues = () => {
@@ -53,9 +55,7 @@ export default function ExpirationDate(props) {
   }
 
   const extractData = data => {
-    // let mounth = null
-    // let year = null
-      
+
     const  mounth = data.slice(0,2)
     const  year = data.slice(2)
 
