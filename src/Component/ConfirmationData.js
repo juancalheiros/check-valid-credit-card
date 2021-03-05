@@ -1,15 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-
-export default function ConfirmationData(props) {
+const ConfirmationData = props => {
     const {
-        numberCreditCard,
-        cvv,
-        expirateDate
+      creditCardNumber,
+      cvv,
+      date,
     } = props
 
-    const date = () => {
-        const dataSlipt = expirateDate.split("")
+    const expirationDate = () => {
+        const dataSlipt = date.split("")
         dataSlipt.splice(2,0,'/')
         
         return dataSlipt.join("")
@@ -17,10 +17,17 @@ export default function ConfirmationData(props) {
 
     return (
       <div>
-        <p>Number Credit Card : {numberCreditCard}</p>
+        <p>Number Credit Card : {creditCardNumber}</p>
         <p>CVV: {cvv}</p>
-        <p>Expirate Date: {date()}</p>
+        <p>Expirate Date: {expirationDate()}</p>
       </div>
     )
-  }
+}
 
+const mapStateToProps = store =>({
+  creditCardNumber: store.clickState.creditCardNumber,
+  cvv: store.clickState.cvv,
+  date: store.clickState.expirationDate,
+})
+
+export default connect(mapStateToProps)(ConfirmationData)

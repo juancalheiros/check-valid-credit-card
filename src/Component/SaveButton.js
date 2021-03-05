@@ -1,33 +1,34 @@
-import React,{useState} from 'react'
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import SaveIcon from '@material-ui/icons/Save';
-
+import React,{ useState } from 'react'
+import { connect } from 'react-redux'
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles'
+import SaveIcon from '@material-ui/icons/Save'
+import { creditCardNumber, cvv, expirateDate } from '../actions'
 
 const useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1),
     },
-  }));
+}))
   
 
-export default function SalveButton(props){
+const SaveButton = props => {
     const {
       habilited,
-      handleShowNumberCreditCard,
-      numberCreditCard,
-      handleShowCVV,
-      cvv,
+      handleShowCreditCardNumber,
+      creditCard,
+      handleShowCardVerificationValue,
+      cardVerificationValue,
       handleShowExpirateDate,
-      expirateDate,
+      date,
       handleShowConfirmationData,
       handleCanHabilitSaveButton,
+      dispatch,
     } = props
     
     const classes = useStyles();
     const [countClick,setCountClick] = useState(1)
   
-
     const handleClick = () => {
       setCountClick(countClick + 1)
       
@@ -37,35 +38,35 @@ export default function SalveButton(props){
     const setUpdates = () => {
       switch (countClick){
         case 1: 
-          handleShowNumberCreditCard(false)
-          handleShowCVV(true)
+          handleShowCreditCardNumber(false)
+          handleShowCardVerificationValue(true)
           handleCanHabilitSaveButton(false)
+          dispatch(creditCardNumber(creditCard))
           break
         
         case 2:  
-          handleShowCVV(false)
+          handleShowCardVerificationValue(false)
           handleShowExpirateDate(true)
           handleCanHabilitSaveButton(false)
+          dispatch(cvv(cardVerificationValue))
           break
         
         case 3: 
           handleShowExpirateDate(false)
           handleShowConfirmationData(true)
           handleCanHabilitSaveButton(true)
+          dispatch(expirateDate(date))
           break
 
         case 4: 
-          
           break
         
         default:
       }
-
       
     }
 
     
-
     return (
         <Button
             variant="contained"
@@ -80,3 +81,9 @@ export default function SalveButton(props){
       </Button>
     )
 }
+
+const mapStateToProps = () => ({})
+const mapDispatchToProps = dispatch => ({dispatch})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SaveButton)

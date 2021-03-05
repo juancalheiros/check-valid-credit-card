@@ -3,7 +3,12 @@ import TextField from '@material-ui/core/TextField'
 import  CreditCardNumberFormat  from './CreditCardNumberFormat'
 import { numberCreditCardIsValid } from './ValidateCreditCardNumber'
 
-export default function CreditCardNumber(props) {
+const CreditCardNumber = props => {
+  
+  const {
+    handleCreditCardNumber,
+    handleCanHaveErrorCreditCard,
+  } = props
 
   const [value, setValue] = useState(null)
   const [isValidNumber,setIsValidNumber] = useState(true)
@@ -29,8 +34,8 @@ export default function CreditCardNumber(props) {
     setMenssage(menssage)
     setIsValidNumber(isValidNumber)
 
-    props.handleNumberCreditCard(value)
-    props.handleCanHaveErrorCreditCard(isValidNumber)
+    handleCreditCardNumber(value)
+    handleCanHaveErrorCreditCard(isValidNumber)
   }
 
   const clearValues = () =>{
@@ -61,3 +66,6 @@ export default function CreditCardNumber(props) {
     />
   )
 }
+
+
+export default CreditCardNumber

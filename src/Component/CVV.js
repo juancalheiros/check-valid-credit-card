@@ -3,8 +3,12 @@ import TextField from '@material-ui/core/TextField'
 import CVVFormat from './CVVFormat'
 
 
-export default function CVV(props) {
-  const { handleCanHaveErrorCVV, handleCVV } = props
+const CVV = props => {
+  
+  const { 
+    handleCardVerifiCationValue, 
+    handleCanHaveErrorCardVerificationValue, 
+  } = props
   
   const [value,setValue] = useState(null)
   const [isValidNumber,setIsValidNumber] =useState(true)
@@ -40,8 +44,8 @@ export default function CVV(props) {
     setMenssage(RespMenssage)
     setIsValidNumber(isValidNumber)
     
-    handleCVV(value)
-    handleCanHaveErrorCVV(isValidNumber)
+    handleCardVerifiCationValue(value) 
+    handleCanHaveErrorCardVerificationValue(isValidNumber)
   }
 
   return (
@@ -61,3 +65,6 @@ export default function CVV(props) {
     />
   )
 }
+
+
+export default CVV

@@ -1,18 +1,37 @@
-import { TYPING_UPDATE_VALUE } from '../actions'
+import { 
+    CREDIT_CARD_NUMBER,
+    CVV,
+    EXPIRATION_DATE
+} from '../actions'
 
 const initialState = {
-    newValue: null,
-    error: false,
+    creditCardNumber: null,
+    cvv: null,
+    expirationDate: null,
   }
 
-export const clickReducer = (state = initialState, action) => {
+export const clickReducer = (state = initialState, action) => { 
     switch (action.type) {
-        case TYPING_UPDATE_VALUE:
+ 
+        case CREDIT_CARD_NUMBER:
             return {
                 ...state,
-                newValue: action.newValue,
-                error: action.error,
+                creditCardNumber: action.newValue,
             }
+        
+        case CVV:
+            return {
+                ...state,
+                cvv: action.newValue,
+            }
+
+        case EXPIRATION_DATE:
+            return {
+                ...state,
+                expirationDate: action.newValue,
+            }
+
+
         default:
             return state
     }
