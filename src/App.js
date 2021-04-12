@@ -1,20 +1,26 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
   Card, 
-  CardContent, 
   CardMedia, 
   makeStyles, 
-  Typography 
+  Typography,
+  CardContent, 
 } from '@material-ui/core'
 
 import { 
-  CreditCardNumber,
-  SaveButton,
   CVV,
+  SaveButton,
   ExpirationDate,
-  ConfirmationData
+  CreditCardNumber,
+  ConfirmationData,
 } from './Component'
+
+import {  
+  cvv as Cvv, 
+  expirateDate as Validate, 
+  creditCardNumber as Number,
+} from './actions'
 
 
 const useStyles = makeStyles(() => ({
@@ -38,23 +44,16 @@ const  App = props => {
     creditCard,
     cvv,
     date, 
+    dispatch,
   } = props
   
 
   const [creditCardNumber, setCreditCardNumber] = useState(creditCard)
-  const [canShowCreditCardNumber,setCanShowCreditCardNumber] = useState(true)
-
   const [cardVerificationValue,setCardVerificationValue] = useState(cvv)
-  const [canShowCardVerificationValue,setCanShowCardVerificationValue] = useState(false)
-  
   const [expirateDate,setExpirateDate] = useState(date)
-  const [canShowExpirationDate,setCanShowExpirationDate] = useState(false)
-
-  const [canShowConfirmationData, setCanShowConfirmationData] = useState(false)
-  
+  const [step,setStep] = useState(1)
   const [canHabilitSaveButton, setCanHabilitSaveButton] = useState(false)
   
-
   // Number Credit Card
   const handleCreditCardNumber = value => {
     setCreditCardNumber(value)
@@ -64,9 +63,6 @@ const  App = props => {
     setCanHabilitSaveButton(value)
   }
 
-  const handleShowCreditCardNumber = value => {
-    setCanShowCreditCardNumber(value)
-  }
 
   // Card Verification Value
   const handleCardVerifiCationValue = value =>{
@@ -77,9 +73,6 @@ const  App = props => {
     setCanHabilitSaveButton(value)
   }
 
-  const handleShowCardVerificationValue = value => {
-    setCanShowCardVerificationValue(value)
-  }
 
   // Expirate Date
   const handleExpirateDate = value => {
@@ -90,20 +83,39 @@ const  App = props => {
     setCanHabilitSaveButton(value)
   }
 
-  const handleShowExpirateDate = value => {
-    setCanShowExpirationDate(value)
+  // Step
+  const handleStep = value => {
+    setStep(value + 1)
   }
 
-  // Confirmation Data
-  const handleShowConfirmationData = value => {
-    setCanShowConfirmationData(value)
+  // update
+  const update = () => { 
+    canHabilitSaveButton && dispatchValues()
+  }
+ 
+  const dispatchValues = () => {
+    console.log("ok")
+    switch (step) {
+      case 1:
+          dispatch(Number(creditCardNumber)) 
+        break
+
+      case 2:
+        dispatch(Cvv(cardVerificationValue))
+        break
+
+      case 3:
+        dispatch(Validate(expirateDate))
+        break
+
+      default:
+        break
+    }
+
   }
 
-  // Save Button
-  const handleCanHabilitSaveButton = value => {
-    setCanHabilitSaveButton(value)
-  }
-  
+  update()
+
   return (
     <>
       <Card className={classes.root}>
@@ -129,39 +141,32 @@ const  App = props => {
             Verify Number Credit Card
           </Typography>
           
-          { canShowCreditCardNumber && 
+          { step === 1  && 
             <CreditCardNumber 
               handleCreditCardNumber={handleCreditCardNumber}
               handleCanHaveErrorCreditCard = {handleCanHaveErrorCreditCard}
             />
           }
           
-          { canShowCardVerificationValue && 
+          { step === 2 && 
             <CVV
               handleCardVerifiCationValue={handleCardVerifiCationValue}
               handleCanHaveErrorCardVerificationValue={handleCanHaveErrorCardVerificationValue}
             />
           }
           
-          { canShowExpirationDate && 
+          { step === 3 && 
             <ExpirationDate
               handleExpirateDate={handleExpirateDate}
               handleCanHaveErrorExpirateDate={handleCanHaveErrorExpirateDate}
             />
           }
 
-          { canShowConfirmationData && <ConfirmationData/> }
+          { step === 4 && <ConfirmationData/> }
           
           <SaveButton 
             habilited={canHabilitSaveButton}
-            handleShowCreditCardNumber ={handleShowCreditCardNumber}
-            handleShowCardVerificationValue={handleShowCardVerificationValue}
-            handleShowExpirateDate={handleShowExpirateDate}
-            handleShowConfirmationData={handleShowConfirmationData}
-            creditCard={creditCardNumber}
-            cardVerificationValue={cardVerificationValue}
-            date={expirateDate}
-            handleCanHabilitSaveButton={handleCanHabilitSaveButton}
+            step={ () => handleStep(step) }
           />
 
         </CardContent>
@@ -178,4 +183,6 @@ const mapStateToProps = store => ({
   date: store.clickState.expirationDate,
 })
 
-export default connect (mapStateToProps)(App)
+const mapDispatchToProps = dispatch => ({dispatch})
+
+export default connect (mapStateToProps,mapDispatchToProps)(App)
